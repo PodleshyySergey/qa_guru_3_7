@@ -1,5 +1,6 @@
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,9 +11,10 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class GoogleTests {
 
-    @BeforeEach
-    public void setUp() {
+    @BeforeAll
+    public static void setUp() {
         Configuration.startMaximized = true;
+        Configuration.browser = "firefox";
     }
 
     @Test
@@ -25,6 +27,8 @@ public class GoogleTests {
 
     @Test
     public void mailRuTest() {
+
+
         open("https://mail.ru/");
         $("#q").val("QA.GURU").pressEnter();
         $(".result").shouldHave(text("QA.GURU"));
